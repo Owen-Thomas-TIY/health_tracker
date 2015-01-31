@@ -7,24 +7,26 @@ before_action :set_step, only: [:show, :edit, :update, :destroy]
 
   def new
     @step = Step.new
+    @day = Day.new
   end
 
   def show
   end
 
   def edit
+    @day = @step.day
   end
 
   def destroy
     @step.destroy
     respond_to do |format|
-      format.html { redirect_to steps_url, notice: 'Steps were successfully destroyed.' }
+      format.html { redirect_to steps_url, notice: 'steps were successfully destroyed.' }
     end
   end
 
   def update
     respond_to do |format|
-      if @step.update(step_params)
+      if @step.update(calorie_params)
         format.html { redirect_to @step, notice: 'Step was successfully updated.' }
       else
         format.html { render :edit }
@@ -33,8 +35,10 @@ before_action :set_step, only: [:show, :edit, :update, :destroy]
   end
 
   def create
-    @step = Step.new(step_params)
-
+    date = Date.new(params[:day]["date(1i)"].to_i,params[:day]["date(2i)"].to_i,params[:day]["date(3i)"].to_i)
+    @day = Day.first_or_create(date: date)
+    @step = Step.new(calorie_params)
+    @step.day_id = @day.id
     respond_to do |format|
       if @step.save
         format.html { redirect_to @step, notice: 'Steps were successfully created.' }
@@ -45,10 +49,14 @@ before_action :set_step, only: [:show, :edit, :update, :destroy]
   end
 
   def step_params
-    params.require(:step).permit(:entered_on, :step)
+    params.require(:step).permit(:day_id, :step)
   end
 
   def set_step
     @step = Step.find(params[:id])
+  end
+
+  def set_day
+    @day = Day.find(params[:day_id])
   end
 end

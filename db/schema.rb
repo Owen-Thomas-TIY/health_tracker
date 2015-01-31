@@ -11,34 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130163048) do
+ActiveRecord::Schema.define(version: 20150131022025) do
 
   create_table "calories", force: :cascade do |t|
-    t.date     "entered_on"
     t.integer  "calorie"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "day_id"
+  end
+
+  add_index "calories", ["day_id"], name: "index_calories_on_day_id"
+
+  create_table "days", force: :cascade do |t|
+    t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "exercises", force: :cascade do |t|
-    t.date     "entered_on"
     t.string   "exercise"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "day_id"
   end
 
+  add_index "exercises", ["day_id"], name: "index_exercises_on_day_id"
+
   create_table "steps", force: :cascade do |t|
-    t.date     "entered_on"
     t.integer  "step"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "day_id"
   end
 
+  add_index "steps", ["day_id"], name: "index_steps_on_day_id"
+
   create_table "weights", force: :cascade do |t|
-    t.date     "entered_on"
     t.decimal  "weight",     precision: 4, scale: 1
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.integer  "day_id"
   end
+
+  add_index "weights", ["day_id"], name: "index_weights_on_day_id"
 
 end

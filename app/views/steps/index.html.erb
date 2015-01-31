@@ -14,7 +14,7 @@
   <tbody>
     <% @steps.each do |step| %>
       <tr>
-        <td><%= step.entered_on %></td>
+        <td><%= step.day.date %></td>
         <td><%= step.step %></td>
         <td><%= link_to 'Show', step %></td>
         <td><%= link_to 'Edit', edit_step_path(step) %></td>

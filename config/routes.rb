@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
   get 'home/home'
-
+  resources :day
   resources :weights
   resources :steps
   resources :calories
   resources :exercises
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -14,7 +14,7 @@
   <tbody>
     <% @weights.each do |weight| %>
       <tr>
-        <td><%= weight.entered_on %></td>
+        <td><%= weight.day.date%></td>
         <td><%= weight.weight %></td>
         <td><%= link_to 'Show', weight %></td>
         <td><%= link_to 'Edit', edit_weight_path(weight) %></td>

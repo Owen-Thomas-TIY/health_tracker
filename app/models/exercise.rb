@@ -1,4 +1,5 @@
 class Exercise < ActiveRecord::Base
+belongs_to :day
   #"Cardio","Strength Training","Spin Class","Jazzercise","Kick-boxing"
   def self.total
       total = 0
@@ -16,5 +17,19 @@ class Exercise < ActiveRecord::Base
         end
       end
       return total
+  end
+
+  def calories_burned
+    if self.exercise == "Cardio"
+      return 150
+    elsif self.exercise == "Strength Training"
+      return 250
+    elsif self.exercise == "Spin Class"
+      return 200
+    elsif self.exercise == "Jazzercise"
+      return 500
+    elsif self.exercise == "Kick-boxing"
+      return 100
+    end
   end
 end

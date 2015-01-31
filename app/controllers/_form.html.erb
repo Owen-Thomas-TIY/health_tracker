@@ -1,11 +1,8 @@
 <%= form_for(@calorie) do |f|%>
-<%= fields_for @day do |d| %>
   <div class="field">
-    <%= d.label :date %><br>
-    <%= d.date_select :date %>
+    <%= f.label :entered_on %><br>
+    <%= f.date_select :entered_on %>
   </div>
-
-<% end %>
   <div class="field">
     <%= f.label :calorie %><br>
     <%= f.text_field :calorie %>

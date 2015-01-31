@@ -1,5 +1,6 @@
 class WeightsController < ApplicationController
-  before_action :set_weight, only: [:show, :edit, :update, :destroy]
+#before_action :set_day
+before_action :set_weight, only: [:show, :edit, :update, :destroy]
 
   # GET /weights
   # GET /weights.json
@@ -15,24 +16,26 @@ class WeightsController < ApplicationController
   # GET /weights/new
   def new
     @weight = Weight.new
+    @day = Day.new
   end
 
   # GET /weights/1/edit
   def edit
+    @day = @weight.day
   end
 
   # POST /weights
   # POST /weights.json
   def create
+    date = Date.new(params[:day]["date(1i)"].to_i,params[:day]["date(2i)"].to_i,params[:day]["date(3i)"].to_i)
+    @day = Day.first_or_create(date: date)
     @weight = Weight.new(weight_params)
-
+    @weight.day_id = @day.id
     respond_to do |format|
       if @weight.save
         format.html { redirect_to @weight, notice: 'Weight was successfully created.' }
-        format.json { render :show, status: :created, location: @weight }
       else
         format.html { render :new }
-        format.json { render json: @weight.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +72,10 @@ class WeightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def weight_params
-      params.require(:weight).permit(:entered_on, :weight)
+      params.require(:weight).permit(:day_id, :weight)
+    end
+
+    def set_day
+      @day = Day.find(params[:day_id])
     end
 end

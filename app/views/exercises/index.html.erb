@@ -14,7 +14,7 @@
   <tbody>
     <% @exercises.each do |exercise| %>
       <tr>
-        <td><%= exercise.entered_on %></td>
+        <td><%= exercise.day.date %></td>
         <td><%= exercise.exercise %></td>
         <td><%= link_to 'Show', exercise %></td>
         <td><%= link_to 'Edit', edit_exercise_path(exercise) %></td>

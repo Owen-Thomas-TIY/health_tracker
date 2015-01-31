@@ -1,14 +1,8 @@
 class HomeController < ApplicationController
   def home
-    @total= Calorie.total - Exercise.total
+    @day = Day.where(date: Date.today).first
+    @calories_burned = @day.calories_burned
+    @calories_consumed = @day.calories_consumed
+    @net_calories =(@calories_consumed.blank? || @calories_burned.blank?) ? 0 : (@day.calories_consumed - @day.calories_burned)
   end
 end
-
-#if Calorie.c_total.blank?
-#            @f_total = (0-@e_total)
-#          elsif Exercise.e_total.blank?
-#            @f_total = @c_total
-#          else
-#            @f_total = Calorie.c_total-Exercise.e_total
-#          end
-#

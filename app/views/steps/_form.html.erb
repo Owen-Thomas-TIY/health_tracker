@@ -1,8 +1,11 @@
 <%= form_for(@step) do |f|%>
+<%= fields_for @day do |d| %>
   <div class="field">
-    <%= f.label :entered_on %><br>
-    <%= f.date_select :entered_on %>
+    <%= d.label :date %><br>
+    <%= d.date_select :date %>
   </div>
+
+<% end %>
   <div class="field">
     <%= f.label :step %><br>
     <%= f.text_field :step %>

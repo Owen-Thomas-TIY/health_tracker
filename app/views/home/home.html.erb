@@ -7,9 +7,23 @@
 <%= link_to 'Exercises', exercises_path %>
 
 <p>
-  <% if @total.blank? %>
-    EAT SOMETHING
+  <% if @calories_burned.blank? %>
+    Go workout.
   <% else %>
-    Total Calories <%= @total %>
+    Total Calories Burned <%= @calories_burned %>
+  <% end %>
+</p>
+
+<p>
+  <% if @calories_consumed.blank? %>
+    Go eat.
+  <% else %>
+    Total Calories Consumed <%= @calories_consumed %>
+  <% end %>
+</p>
+
+<p>
+  <% if @calories_consumed && @calories_burned %>
+    Net Calories <%= @net_calories %>
   <% end %>
 </p>

@@ -14,7 +14,7 @@
   <tbody>
     <% @calories.each do |calorie| %>
       <tr>
-        <td><%= calorie.entered_on %></td>
+        <td><%= calorie.day.date %></td>
         <td><%= calorie.calorie %></td>
         <td><%= link_to 'Show', calorie %></td>
         <td><%= link_to 'Edit', edit_calory_path(calorie) %></td>
