@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131022025) do
+ActiveRecord::Schema.define(version: 20150131180238) do
 
   create_table "calories", force: :cascade do |t|
     t.integer  "calorie"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20150131022025) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.integer  "day_id"
+    t.integer  "age"
+    t.integer  "height"
   end
 
   add_index "weights", ["day_id"], name: "index_weights_on_day_id"

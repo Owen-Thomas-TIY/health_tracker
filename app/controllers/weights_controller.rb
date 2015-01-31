@@ -72,7 +72,7 @@ before_action :set_weight, only: [:show, :edit, :update, :destroy]
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def weight_params
-      params.require(:weight).permit(:day_id, :weight)
+      params.require(:weight).permit(:day_id, :weight, :age, :height)
     end
 
     def set_day

@@ -1,7 +1,7 @@
 <h1>Home#home</h1>
 <p>Find me in app/views/home/home.html.erb</p>
 
-<%= link_to 'Weight', weights_path %>
+<%= link_to 'Age, Height and Weight', weights_path %>
 <%= link_to 'Steps', steps_path %>
 <%= link_to 'Calories', calories_path %>
 <%= link_to 'Exercises', exercises_path %>
@@ -25,5 +25,12 @@
 <p>
   <% if @calories_consumed && @calories_burned %>
     Net Calories <%= @net_calories %>
+  <% end %>
+</p>
+<p>
+  <% if @day.weight.blank? %>
+    Please enter age, weight, and height for today.
+  <% else %>
+    Most recent BMR <%= @bmr.round %>
   <% end %>
 </p>
