@@ -37,7 +37,7 @@ before_action :set_step, only: [:show, :edit, :update, :destroy]
   def create
     date = Date.new(params[:day]["date(1i)"].to_i,params[:day]["date(2i)"].to_i,params[:day]["date(3i)"].to_i)
     @day = Day.where(date: Date.today).first_or_create!
-    @step = Step.new(calorie_params)
+    @step = Step.new(step_params)
     @step.day_id = @day.id
     respond_to do |format|
       if @step.save
